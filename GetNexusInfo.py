@@ -11,6 +11,7 @@ class GetNexusInfo:
     filename = "v20.h5"
     metadata = {}
     sfdict = {}
+    basename = "/user/detector/experiments/"
 
     sourceFolderArray = {
         "0001": "v20/2018_01_24",
@@ -268,8 +269,7 @@ class GetNexusInfo:
         self.nexusInfo = {}
 
 
-
-        filename = self.sfdict[key] 
+        filename = self.basename+self.sfdict[key] 
         if '.hdf' in filename:
             pass
         else:
@@ -324,6 +324,7 @@ class GetNexusInfo:
             self.sfdict = {
                 "0001": "nicos_00000108.hdf"
             }
+            self.basename = "./"
         for key in self.sfdict:
             self.get_h5_info(key )
 
