@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
+import copy
 import h5py
 import inspect
-import copy
 import json
 import socket
 
@@ -271,6 +271,8 @@ class GetNexusInfo:
 
         filename = self.basename+self.sfdict[key] 
         if '.hdf' in filename:
+            pass
+        elif '.nxs' in filename:
             pass
         else:
             return
