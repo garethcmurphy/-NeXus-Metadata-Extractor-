@@ -267,7 +267,14 @@ class GetNexusInfo:
 
         self.nexusInfo = {}
 
+
+
         filename = self.sfdict[key] 
+        if '.hdf' in filename:
+            pass
+        else:
+            return
+
         f = h5py.File(filename, 'r',  libver='latest', swmr=True)
 
         self.nexusInfo["creator"] = self.get_attribute(f.attrs, "creator")
