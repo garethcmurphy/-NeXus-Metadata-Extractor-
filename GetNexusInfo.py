@@ -272,13 +272,12 @@ class GetNexusInfo:
         filename = self.basename + self.sfdict[key]
         print(filename)
         if '.hdf' in filename:
-            pass
+            if '000155.hdf' in filename:
+                return
+            elif '000156.hdf' in filename:
+                return
         elif '.nxs' in filename:
             pass
-        elif '000155.hdf' in filename:
-            return
-        elif '000156.hdf' in filename:
-            return
         else:
             return
 
