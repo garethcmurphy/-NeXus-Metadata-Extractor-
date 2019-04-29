@@ -71,6 +71,8 @@ class GetNexusInfo:
         num = str(number)
         array = self.get_property(
             f, "/entry/instrument/chopper_"+num+"/"+measurement)
+        if (array = ""):
+            return
         value = array
         if hasattr(array, "__iter__"):
             value = array[0]
@@ -93,7 +95,6 @@ class GetNexusInfo:
         if (path in f):
             title = f[path][...]
             title2 = title[()]
-        # print(path, title2)
         return title2
 
     def get_ellipsis(self, f, path):
