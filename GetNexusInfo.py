@@ -72,7 +72,7 @@ class GetNexusInfo:
         array = self.get_property(
             f, "/entry/instrument/chopper_"+num+"/"+measurement)
         value = array
-        if hasattr(array, "__len__"):
+        if hasattr(array, "__iter__"):
             value = array[0]
         self.nexusInfo["chopper_"+measurement+"_" +
                        num] = {"v": str(value), "u": self.units[measurement]}
