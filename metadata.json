@@ -1,5 +1,9 @@
 {
   "0001": {
+    "chopperSpeed1": {
+      "u": "Hz",
+      "v": "0"
+    },
     "creator": "kafka-to-nexus commit 970069c",
     "file_name": "/data/kafka-to-nexus/nicos_00000108.hdf",
     "file_time": "2019-04-15T11:42:46.563+0200",

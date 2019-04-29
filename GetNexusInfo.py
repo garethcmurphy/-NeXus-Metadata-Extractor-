@@ -24,7 +24,6 @@ class GetNexusInfo:
 
         self.nexusInfo = {}
 
-
         filename = self.basename + self.sfdict[key]
         print(filename)
         if '.hdf' in filename:
@@ -37,22 +36,37 @@ class GetNexusInfo:
         else:
             return
 
-        with  h5py.File(filename, 'r',  libver='latest', swmr=True) as f:
+        with h5py.File(filename, 'r',  libver='latest', swmr=True) as f:
             self.nexusInfo["creator"] = self.get_attribute(f.attrs, "creator")
-            self.nexusInfo["file_name"] = self.get_attribute(f.attrs, "file_name")
-            self.nexusInfo["file_time"] = self.get_attribute(f.attrs, "file_time")
+            self.nexusInfo["file_name"] = self.get_attribute(
+                f.attrs, "file_name")
+            self.nexusInfo["file_time"] = self.get_attribute(
+                f.attrs, "file_time")
             title = self.get_property(f, "/entry/title")
             self.nexusInfo["title"] = title
             source_name = self.get_property(f, "/entry/instrument/source/name")
             self.nexusInfo["start_time"] = self.get_property(
                 f, "/entry/start_time")
-            sample_description = self.get_ellipsis(f, "/entry/sample/description")
+            # self.nexusInfo["chopperSpeed"]
+            for  chopper_number in range(1,8):
+                self.getVar(f, "speed",chopper_number)
+            for  chopper_number in range(1,8):
+                self.getVar(f, "speed",chopper_number)
+            for  chopper_number in range(1,8):
+                self.getVar(f, "phase",chopper_number)
+            sample_description = self.get_ellipsis(
+                f, "/entry/sample/description")
             self.nexusInfo["sample_description"] = sample_description[()]
             self.nexusInfo["source_name"] = source_name
             f.close()
         print(self.nexusInfo)
-        tag = filename.replace("/users/detector/experiments/", "")
+        self.nexusInfo["file_name"] = filename
         self.metadata[key] = self.nexusInfo
+
+    def getVar(self, f, measurement, number):
+        array = self.get_property(
+            f, "/entry/instrument/chopper_"+number+"/"+measurement)
+        self.nexusInfo["chopper_"+measurement+"_"+str(number)] = {"v": str(array[0]), "u": "Hz"}
 
     def get_names(self, my_list, f, tag):
         if tag in f:
@@ -87,7 +101,7 @@ class GetNexusInfo:
             }
             self.basename = "./"
         for key in self.sfdict:
-            self.get_h5_info(key )
+            self.get_h5_info(key)
 
 
 if __name__ == "__main__":
