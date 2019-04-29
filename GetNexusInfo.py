@@ -51,9 +51,6 @@ class GetNexusInfo:
             source_name = self.get_property(f, "/entry/instrument/source/name")
             self.nexusInfo["start_time"] = self.get_property(
                 f, "/entry/start_time")
-            # self.nexusInfo["chopperSpeed"]
-            for chopper_number in range(1, 9):
-                self.getVar(f, "speed", chopper_number)
             for chopper_number in range(1, 9):
                 self.getVar(f, "speed", chopper_number)
             for chopper_number in range(1, 8):
