@@ -315,6 +315,7 @@ class GetNexusInfo:
         hostname = socket.gethostname()
         filenames = [
             "/users/detector/experiments/v20/2019_04_05/nicos_00000108.hdf",
+            "/users/detector/experiments/v20/2019_04_05/nicos_00000109.hdf",
         ]
         if hostname == 'CI0020036':
             filenames = [
