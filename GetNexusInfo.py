@@ -71,7 +71,7 @@ class GetNexusInfo:
         num = str(number)
         array = self.get_property(
             f, "/entry/instrument/chopper_"+num+"/"+measurement)
-        if (array = ""):
+        if array == "":
             return
         value = array
         if hasattr(array, "__iter__"):
