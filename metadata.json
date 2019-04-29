@@ -1,1 +1,11 @@
-{}
+{
+  "0001": {
+    "creator": "kafka-to-nexus commit 970069c",
+    "file_name": "/data/kafka-to-nexus/nicos_00000108.hdf",
+    "file_time": "2019-04-15T11:42:46.563+0200",
+    "sample_description": "hBN target with 1.0 mm diameter hole",
+    "source_name": "V20_14hz_chopper_source",
+    "start_time": "2019-04-15T11:42:58",
+    "title": ""
+  }
+}

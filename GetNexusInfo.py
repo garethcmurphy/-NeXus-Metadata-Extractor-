@@ -10,6 +10,7 @@ class GetNexusInfo:
     nexusInfo = {}
     filename = "v20.h5"
     metadata = {}
+    sfdict = {}
 
     sourceFolderArray = {
         "0001": "v20/2018_01_24",
@@ -262,9 +263,11 @@ class GetNexusInfo:
     def __init__(self):
         self.filename = "v20.h5"
 
-    def get_h5_info(self, filename):
+    def get_h5_info(self, key):
 
         self.nexusInfo = {}
+
+        filename = self.sfdict[key] 
         f = h5py.File(filename, 'r',  libver='latest', swmr=True)
 
         self.nexusInfo["creator"] = self.get_attribute(f.attrs, "creator")
@@ -281,11 +284,7 @@ class GetNexusInfo:
         f.close()
         print(self.nexusInfo)
         tag = filename.replace("/users/detector/experiments/", "")
-        sep = "/"
-        tag2 = sep.join(tag.split(sep)[:-1])
-        tag3 = "v20/2018_12_13/"+self.nexusInfo["file_name"]
-        tag4 = self.inv_map[tag3]
-        self.metadata[tag4] = self.nexusInfo
+        self.metadata[key] = self.nexusInfo
 
     def get_names(self, my_list, f, tag):
         if tag in f:
@@ -313,15 +312,13 @@ class GetNexusInfo:
 
     def loop(self):
         hostname = socket.gethostname()
-        filenames = [
-            "/users/detector/experiments/v20/2019_04_05/nicos_00000108.hdf",
-            "/users/detector/experiments/v20/2019_04_05/nicos_00000109.hdf",
-        ]
+        self.sfdict = self.sourceFolderArray
         if hostname == 'CI0020036':
-            filenames = [
-                "nicos_00000108.hdf"]
-        for filename in filenames:
-            self.get_h5_info(filename)
+            self.sfdict = {
+                "0001": "nicos_00000108.hdf"
+            }
+        for key in self.sfdict:
+            self.get_h5_info(key )
 
 
 if __name__ == "__main__":
