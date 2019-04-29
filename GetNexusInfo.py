@@ -12,6 +12,10 @@ class GetNexusInfo:
     filename = "v20.h5"
     metadata = {}
     sfdict = {}
+    units = {
+        "speed": "Hz",
+        "phase": "deg"
+        }
     basename = "/users/detector/experiments/"
     sourceFolderArray = V20Filenames.sourceFolderArray
 
@@ -48,9 +52,9 @@ class GetNexusInfo:
             self.nexusInfo["start_time"] = self.get_property(
                 f, "/entry/start_time")
             # self.nexusInfo["chopperSpeed"]
-            for  chopper_number in range(1,8):
+            for  chopper_number in range(1,9):
                 self.getVar(f, "speed",chopper_number)
-            for  chopper_number in range(1,8):
+            for  chopper_number in range(1,9):
                 self.getVar(f, "speed",chopper_number)
             for  chopper_number in range(1,8):
                 self.getVar(f, "phase",chopper_number)
@@ -64,9 +68,10 @@ class GetNexusInfo:
         self.metadata[key] = self.nexusInfo
 
     def getVar(self, f, measurement, number):
+        num= str(number)
         array = self.get_property(
-            f, "/entry/instrument/chopper_"+number+"/"+measurement)
-        self.nexusInfo["chopper_"+measurement+"_"+str(number)] = {"v": str(array[0]), "u": "Hz"}
+            f, "/entry/instrument/chopper_"+num+"/"+measurement)
+        self.nexusInfo["chopper_"+measurement+"_"+num] = {"v": str(array[0]), "u": self.units[measurement]}
 
     def get_names(self, my_list, f, tag):
         if tag in f:

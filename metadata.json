@@ -1,11 +1,67 @@
 {
   "0001": {
-    "chopperSpeed1": {
+    "chopper_phase_1": {
+      "u": "deg",
+      "v": "0"
+    },
+    "chopper_phase_2": {
+      "u": "deg",
+      "v": "0"
+    },
+    "chopper_phase_3": {
+      "u": "deg",
+      "v": "0"
+    },
+    "chopper_phase_4": {
+      "u": "deg",
+      "v": "0"
+    },
+    "chopper_phase_5": {
+      "u": "deg",
+      "v": "0"
+    },
+    "chopper_phase_6": {
+      "u": "deg",
+      "v": "0"
+    },
+    "chopper_phase_7": {
+      "u": "deg",
+      "v": "0"
+    },
+    "chopper_speed_1": {
+      "u": "Hz",
+      "v": "0"
+    },
+    "chopper_speed_2": {
+      "u": "Hz",
+      "v": "0"
+    },
+    "chopper_speed_3": {
+      "u": "Hz",
+      "v": "0"
+    },
+    "chopper_speed_4": {
+      "u": "Hz",
+      "v": "0"
+    },
+    "chopper_speed_5": {
+      "u": "Hz",
+      "v": "0"
+    },
+    "chopper_speed_6": {
+      "u": "Hz",
+      "v": "0"
+    },
+    "chopper_speed_7": {
+      "u": "Hz",
+      "v": "0"
+    },
+    "chopper_speed_8": {
       "u": "Hz",
       "v": "0"
     },
     "creator": "kafka-to-nexus commit 970069c",
-    "file_name": "/data/kafka-to-nexus/nicos_00000108.hdf",
+    "file_name": "./nicos_00000108.hdf",
     "file_time": "2019-04-15T11:42:46.563+0200",
     "sample_description": "hBN target with 1.0 mm diameter hole",
     "source_name": "V20_14hz_chopper_source",
