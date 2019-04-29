@@ -11,7 +11,7 @@ class GetNexusInfo:
     filename = "v20.h5"
     metadata = {}
     sfdict = {}
-    basename = "/user/detector/experiments/"
+    basename = "/users/detector/experiments/"
 
     sourceFolderArray = {
         "0001": "v20/2018_01_24",
