@@ -278,20 +278,19 @@ class GetNexusInfo:
         else:
             return
 
-        f = h5py.File(filename, 'r',  libver='latest', swmr=True)
-
-        self.nexusInfo["creator"] = self.get_attribute(f.attrs, "creator")
-        self.nexusInfo["file_name"] = self.get_attribute(f.attrs, "file_name")
-        self.nexusInfo["file_time"] = self.get_attribute(f.attrs, "file_time")
-        title = self.get_property(f, "/entry/title")
-        self.nexusInfo["title"] = title
-        source_name = self.get_property(f, "/entry/instrument/source/name")
-        self.nexusInfo["start_time"] = self.get_property(
-            f, "/entry/start_time")
-        sample_description = self.get_ellipsis(f, "/entry/sample/description")
-        self.nexusInfo["sample_description"] = sample_description[()]
-        self.nexusInfo["source_name"] = source_name
-        f.close()
+        with  h5py.File(filename, 'r',  libver='latest', swmr=True) as f:
+            self.nexusInfo["creator"] = self.get_attribute(f.attrs, "creator")
+            self.nexusInfo["file_name"] = self.get_attribute(f.attrs, "file_name")
+            self.nexusInfo["file_time"] = self.get_attribute(f.attrs, "file_time")
+            title = self.get_property(f, "/entry/title")
+            self.nexusInfo["title"] = title
+            source_name = self.get_property(f, "/entry/instrument/source/name")
+            self.nexusInfo["start_time"] = self.get_property(
+                f, "/entry/start_time")
+            sample_description = self.get_ellipsis(f, "/entry/sample/description")
+            self.nexusInfo["sample_description"] = sample_description[()]
+            self.nexusInfo["source_name"] = source_name
+            f.close()
         print(self.nexusInfo)
         tag = filename.replace("/users/detector/experiments/", "")
         self.metadata[key] = self.nexusInfo
