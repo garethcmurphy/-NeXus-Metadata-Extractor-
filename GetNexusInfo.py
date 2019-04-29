@@ -275,6 +275,10 @@ class GetNexusInfo:
             pass
         elif '.nxs' in filename:
             pass
+        elif '000155.hdf' in filename:
+            return
+        elif '000156.hdf' in filename:
+            return
         else:
             return
 
