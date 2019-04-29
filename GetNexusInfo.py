@@ -70,11 +70,15 @@ class GetNexusInfo:
             f, "/entry/instrument/chopper_"+num+"/"+measurement)
         if array == "":
             return
+        value = self.getScalarOrArray(array )
+        self.nexusInfo["chopper_"+measurement+"_" +
+                       num] = {"v": str(value), "u": self.units[measurement]}
+
+    def getScalarOrArray(self, array ):
         value = array
         if hasattr(array, "__iter__"):
             value = array[0]
-        self.nexusInfo["chopper_"+measurement+"_" +
-                       num] = {"v": str(value), "u": self.units[measurement]}
+        return value
 
     def get_names(self, my_list, f, tag):
         if tag in f:
